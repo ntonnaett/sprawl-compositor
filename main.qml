@@ -1,13 +1,16 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import QtWayland.Compositor 1.1
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
+import QtQuick.VirtualKeyboard 2.1
 
 WaylandCompositor {
     WaylandOutput {
         sizeFollowsWindow: true
         window: Window {
             id: win
+            width: 800
+            height: 480
             visible: true
             color: "gray"
             SwipeView {
@@ -51,6 +54,14 @@ WaylandCompositor {
                     }
                 }
             }
+
+	InputPanel {
+	    id: inputPanel
+	    visible: active
+	    y: active ? parent.height - inputPanel.height : parent.height
+	    anchors.left: parent.left
+	    anchors.right: parent.right
+	}
         }
     }
     ListModel { id: shellSurfaces }
