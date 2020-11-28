@@ -15,6 +15,7 @@ WaylandCompositor {
             color: "gray"
             SwipeView {
                 id: swipeView
+                interactive: false
 //		anchors.left: parent.left
 //		anchors.top: parent.top
 //		anchors.right: parent.right
@@ -69,11 +70,7 @@ WaylandCompositor {
         }
     }
     ListModel { id: shellSurfaces }
-    XdgShellV6 {
-        onToplevelCreated: {
-            shellSurfaces.append({shellSurface: xdgSurface});
-        }
-    }
+
     IviApplication {
         onIviSurfaceCreated: {
             shellSurfaces.append({shellSurface: iviSurface});
