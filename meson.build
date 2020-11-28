@@ -4,9 +4,9 @@ project('sprawl-compositor', 'cpp',
 
 qt5 = import('qt5')
 qt5_dep = dependency('qt5', modules: ['Core', 'Gui', 'Qml'])
-qml_files = qt5.preprocess(qresources : 'qml.qrc')
+qml_files = qt5.preprocess(qresources : 'src/qml.qrc')
 
 executable('sprawl-compositor',
-           'main.cpp', qml_files,
+           'src/main.cpp', qml_files,
            dependencies : qt5_dep,
            install : true)
