@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtWayland.Compositor 1.1
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
-// import QtQuick.VirtualKeyboard 2.1
+import QtQuick.VirtualKeyboard 2.1
 
 WaylandCompositor {
     WaylandOutput {
@@ -16,10 +16,10 @@ WaylandCompositor {
             SwipeView {
                 id: swipeView
                 interactive: false
-//		anchors.left: parent.left
-//		anchors.top: parent.top
-//		anchors.right: parent.right
-//		anchors.bottom: inputPanel.top
+		anchors.left: parent.left
+		anchors.top: parent.top
+		anchors.right: parent.right
+		anchors.bottom: inputPanel.top
                 anchors.fill: parent
                 Repeater {
                     model: shellSurfaces
@@ -60,20 +60,20 @@ WaylandCompositor {
                 }
             }
 
-//	InputPanel {
-//	    id: inputPanel
-//	    visible: active
-//	    y: active ? parent.height - inputPanel.height : parent.height
-//	    anchors.left: parent.left
-//	    anchors.right: parent.right
-//	}
+	InputPanel {
+	    id: inputPanel
+	    visible: active
+	    y: active ? parent.height - inputPanel.height : parent.height
+	    anchors.left: parent.left
+	    anchors.right: parent.right
+	}
         }
     }
     ListModel { id: shellSurfaces }
     XdgShellV6 {
         onToplevelCreated: {
             shellSurfaces.append({shellSurface: xdgSurface});
-            toplevel.sendFullscreen(Qt.size(win.width, win.height));
+            xdgSurface.sendFullscreen(Qt.size(win.width, win.height));
         }
     }
 
