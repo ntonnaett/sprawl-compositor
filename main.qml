@@ -69,6 +69,12 @@ WaylandCompositor {
         }
     }
     ListModel { id: shellSurfaces }
+    WlShell {
+        onWlShellSurfaceCreated: {
+            shellSurfaces.append({shellSurface: shellSurface});
+            shellSurface.sendConfigure(Qt.size(win.width, win.height), WlShellSurface.NoneEdge);
+        }
+    }
     IviApplication {
         onIviSurfaceCreated: {
             shellSurfaces.append({shellSurface: iviSurface});
