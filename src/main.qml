@@ -70,6 +70,12 @@ WaylandCompositor {
         }
     }
     ListModel { id: shellSurfaces }
+    XdgShellV6 {
+        onToplevelCreated: {
+            shellSurfaces.append({shellSurface: xdgSurface});
+            xdgToplevel.sendFullscreen(Qt.size(win.width, win.height));
+        }
+    }
 
     IviApplication {
         onIviSurfaceCreated: {
