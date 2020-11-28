@@ -15,6 +15,10 @@ WaylandCompositor {
             color: "gray"
             SwipeView {
                 id: swipeView
+		anchors.left: parent.left
+		anchors.top: parent.top
+		anchors.right: parent.right
+		anchors.bottom: inputPanel.top
                 anchors.fill: parent
                 Repeater {
                     model: shellSurfaces
