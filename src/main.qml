@@ -73,7 +73,7 @@ WaylandCompositor {
     XdgShellV6 {
         onToplevelCreated: {
             shellSurfaces.append({shellSurface: xdgSurface});
-            xdgSurface.sendFullscreen(Qt.size(win.width, win.height));
+            toplevel.sendFullscreen(Qt.size(win.width, win.height));
         }
     }
 
