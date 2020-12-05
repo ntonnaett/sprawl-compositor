@@ -55,7 +55,7 @@ WaylandCompositor {
                         Button {
                             text: "x"
                             anchors.right: parent.right
-                            onClicked: modelData.surface.client.close()
+                            onClicked: modelData.toplevel.sendClose()
                         }
                     }
                 }
