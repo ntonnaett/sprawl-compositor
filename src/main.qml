@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import QtWayland.Compositor 1.1
+import QtWayland.Compositor 1.15
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
 import QtQuick.VirtualKeyboard 2.1
@@ -16,6 +16,7 @@ WaylandCompositor {
             SwipeView {
                 id: swipeView
                 interactive: false
+                orientation: Qt.Vertical
 		anchors.left: parent.left
 		anchors.top: parent.top
 		anchors.right: parent.right
@@ -47,7 +48,7 @@ WaylandCompositor {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                drawer.close()
+                                drawer.close();
                                 swipeView.currentIndex = index;
                             }
                         }
@@ -70,11 +71,18 @@ WaylandCompositor {
         }
     }
     ListModel { id: shellSurfaces }
-    XdgShellV6 {
+    XdgShell {
         onToplevelCreated: {
+            drawer.close()
             shellSurfaces.append({shellSurface: xdgSurface});
             toplevel.sendFullscreen(Qt.size(win.width, win.height));
         }
+    }
+
+    XdgDecorationManagerV1 {
+        // Provide a hint to clients that support the extension they should use server-side
+        // decorations.
+        preferredMode: XdgToplevel.ServerSideDecoration
     }
 
     IviApplication {
